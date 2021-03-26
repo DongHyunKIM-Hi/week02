@@ -1,6 +1,9 @@
-package com.spring2.week01;
+package com.spring2.week01.controller;
 
-import lombok.RequiredArgsConstructor;
+import com.spring2.week01.model.Product;
+import com.spring2.week01.dto.ProductMypriceRequestDto;
+import com.spring2.week01.dto.ProductRequestDto;
+import com.spring2.week01.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.sql.SQLException;

@@ -1,5 +1,7 @@
-package com.spring2.week01;
+package com.spring2.week01.controller;
 
+import com.spring2.week01.util.NaverShopSearch;
+import com.spring2.week01.dto.ItemDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

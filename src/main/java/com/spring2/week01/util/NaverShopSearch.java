@@ -1,6 +1,7 @@
-package com.spring2.week01;
+package com.spring2.week01.util;
 
 
+import com.spring2.week01.dto.ItemDto;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.*;

@@ -1,4 +1,4 @@
-package com.spring2.week01;
+package com.spring2.week01.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

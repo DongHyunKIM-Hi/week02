@@ -1,10 +1,13 @@
 package com.spring2.week01;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.sql.SQLException;
+import javax.transaction.Transactional;
+
 import java.util.List;
 
+@Service
 public class ProductService {
     // 멤버 변수 선언
     private final ProductRepository productRepository;
@@ -16,25 +19,26 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<Product> getProducts() throws SQLException {
+    public List<Product> getProducts()  {
         // 멤버 변수 사용
-        return productRepository.getProducts();
+        return productRepository.findAll();
     }
 
-    public Product createProduct(ProductRequestDto requestDto) throws SQLException {
+    public Product createProduct(ProductRequestDto requestDto) {
         // 요청받은 DTO 로 DB에 저장할 객체 만들기
         Product product = new Product(requestDto);
-        productRepository.createProduct(product);
+        productRepository.save(product);
         return product;
     }
 
-    public Product updateProduct(Long id, ProductMypriceRequestDto requestDto) throws SQLException {
-        Product product = productRepository.getProduct(id);
-        if (product == null) {
-            throw new NullPointerException("해당 아이디가 존재하지 않습니다.");
-        }
+    @Transactional
+    public Product updateProduct(Long id, ProductMypriceRequestDto requestDto) {
+        Product product = productRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("찾을수없다.")
+        );
+
         int myPrice = requestDto.getMyprice();
-        productRepository.updateProductMyPrice(id, myPrice);
+        product.updateMyprice(myPrice);
         return product;
     }
 }
